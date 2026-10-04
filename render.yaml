@@ -1,0 +1,22 @@
+# Render Blueprint for the API. The frontend deploys separately (see DEPLOYMENT.md).
+services:
+  - type: web
+    name: newdev-staff-work-api
+    runtime: node
+    rootDir: server
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_ANON_KEY
+        sync: false
+      - key: SUPABASE_SERVICE_ROLE_KEY
+        sync: false
+      - key: CLIENT_ORIGIN
+        sync: false          # your deployed frontend URL, e.g. https://staff.yourcompany.com
+      - key: APP_TIMEZONE
+        value: Asia/Kolkata
